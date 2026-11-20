@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-<uses-permission android:name="android.permission.WAKE_LOCK"/>
-<uses-permission android:name="android.permission.RECORD_AUDIO"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
-<application android:label="My Azan" android:allowBackup="false" android:theme="@android:style/Theme.Material.Light.NoActionBar">
-<activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
-<receiver android:name=".AzanReceiver" android:exported="false"/>
-<receiver android:name=".SystemReceiver" android:exported="false"><intent-filter>
-<action android:name="android.intent.action.BOOT_COMPLETED"/><action android:name="android.intent.action.TIMEZONE_CHANGED"/><action android:name="android.intent.action.TIME_SET"/><action android:name="android.intent.action.MY_PACKAGE_REPLACED"/><action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED"/>
-</intent-filter></receiver>
-<service android:name=".AzanPlaybackService" android:exported="false" android:foregroundServiceType="mediaPlayback"/>
-</application></manifest>
+  <queries>
+    <intent><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent>
+    <package android:name="com.instagram.android"/>
+    <package android:name="com.facebook.katana"/>
+    <package android:name="com.google.android.youtube"/>
+  </queries>
+  <application android:allowBackup="false" android:label="FocusGuard" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:supportsRtl="true">
+    <activity android:name=".MainActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <service android:name=".FocusAccessibilityService"
+      android:exported="true"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+      android:label="FocusGuard Blocking Service">
+      <intent-filter><action android:name="android.accessibilityservice.AccessibilityService"/></intent-filter>
+      <meta-data android:name="android.accessibilityservice" android:resource="@xml/focus_accessibility"/>
+    </service>
+  </application>
+</manifest>

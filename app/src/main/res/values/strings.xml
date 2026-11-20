@@ -1,0 +1,4 @@
+<resources>
+<string name="app_name">FocusGuard</string>
+<string name="accessibility_description">FocusGuard uses Accessibility access only while enabled by you to identify the foreground app and certain Reels/Shorts screen indicators, then return to Home during your configured schedules. No screen content or activity is uploaded. Detection can be imperfect and can stop working when other apps update.</string>
+</resources>
