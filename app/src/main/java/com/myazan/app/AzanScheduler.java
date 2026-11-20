@@ -15,7 +15,7 @@ public final class AzanScheduler {
    if(!Prefs.enabled(c,PrayerTimes.NAMES[i]))continue;
    for(int days=0;days<3;days++){
     Calendar date=Calendar.getInstance();date.add(Calendar.DATE,days);
-    Long when=PrayerTimes.calculate(date.getTime(),Prefs.latitude(c),Prefs.longitude(c),Prefs.method(c),Prefs.hanafi(c),Prefs.offsets(c)).get(PrayerTimes.NAMES[i]);
+    Long when=Prefs.times(c,date.getTime()).get(PrayerTimes.NAMES[i]);
     if(when!=null&&when>now+1500){
       if(exactAllowed(c))a.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,when,p);
       else a.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,when,p);
